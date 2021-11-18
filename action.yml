@@ -22,6 +22,10 @@ inputs:
     description: 'the exe name'
     required: false
     default: 'main'
+  use-dependencies:
+    description: 'whether to install requirements.txt before build'
+    required: false
+    default: true
 
 runs:
   using: "composite"
@@ -34,7 +38,7 @@ runs:
       shell: bash
       run: |
         python -m pip install --upgrade pip 
-        pip install -r requirements.txt
+        [ ${{ inputs.use-dependencies }} = true ] && pip install -r requirements.txt
         pip install pyinstaller==${{ inputs.pyinstaller_version }}
         pyinstaller --clean -y --dist ${{ inputs.dist }} --name ${{ inputs.artifact }} --onefile ${{ inputs.main }}.py
         chown -R --reference=. ./dist

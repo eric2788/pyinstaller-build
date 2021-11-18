@@ -37,6 +37,7 @@ jobs:
         with:
           main: main
           artifact: Program
+          use-dependencies: false
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
