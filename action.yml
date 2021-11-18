@@ -1,6 +1,9 @@
 name: 'PyInstaller Build'
 description: 'build your python program to executable'
 author: 'Eric Lam'
+branding:
+  icon: 'package'
+  color: 'gray-dark'
 
 inputs:
   main:
