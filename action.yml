@@ -21,7 +21,7 @@ inputs:
   artifact:
     description: 'the exe name'
     required: false
-    default: ${{ inputs.main }}
+    default: 'main'
 
 runs:
   using: "composite"
