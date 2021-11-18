@@ -1,0 +1,44 @@
+# This workflow will upload a Python Package using Twine when a release is created
+# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Test Build Python Exe
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build_linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test Build Python Exe
+      uses: eric2788/pyinstaller-build@master
+      with:
+        main: main
+        artifact: Program
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: python_exe
+        path: dist
+        
+  build_windows:
+    runs-on: window-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test Build Python Exe
+        uses: eric2788/pyinstaller-build@master
+        with:
+          main: main
+          artifact: Program
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: python_exe
+          path: dist
