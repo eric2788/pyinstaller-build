@@ -19,7 +19,7 @@ inputs:
     required: false
     default: '4.7'
   artifact:
-    description: 'the exe name'
+    description: 'the output exe name'
     required: false
     default: 'main'
   use-dependencies:
@@ -41,4 +41,4 @@ runs:
         ${{ inputs.use-dependencies }} && pip install -r requirements.txt
         pip install pyinstaller==${{ inputs.pyinstaller_version }}
         pyinstaller --clean -y --dist ${{ inputs.dist }} --name ${{ inputs.artifact }} --onefile ${{ inputs.main }}.py
-        chown -R --reference=. ./dist
+        chown -R --reference=. ${{ inputs.dist }}
