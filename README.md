@@ -1,5 +1,5 @@
 # pyinstaller-build
-github actions for pyinstaller
+github actions for pyinstaller to compile executable
 
 ### how to use
 
