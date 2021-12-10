@@ -28,6 +28,7 @@ jobs:
       with:
         name: python_exe
         path: dist
+        no-console: true
         
   build_windows:
     runs-on: windows-latest
@@ -44,3 +45,4 @@ jobs:
         with:
           name: python_exe
           path: dist
+          no-console: true
