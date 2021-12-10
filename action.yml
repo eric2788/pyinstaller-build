@@ -43,5 +43,5 @@ runs:
         python -m pip install --upgrade pip 
         ${{ inputs.use-dependencies }} && pip install -r requirements.txt
         pip install pyinstaller==${{ inputs.pyinstaller_version }}
-        pyinstaller --clean -y --dist ${{ inputs.dist }} --name ${{ inputs.artifact }} --onefile ${{ inputs.main }}.py
+        pyinstaller --clean -y --dist ${{ inputs.dist }} --noconsole --name ${{ inputs.artifact }} --onefile ${{ inputs.main }}.py
         chown -R --reference=. ${{ inputs.dist }}
