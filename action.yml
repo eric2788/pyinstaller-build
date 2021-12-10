@@ -29,6 +29,10 @@ inputs:
     description: 'whether to install requirements.txt before build'
     required: false
     default: true
+  no-console:
+    description: 'whether to disppear console terminal'
+    required: false
+    default: false
 
 runs:
   using: "composite"
@@ -42,6 +46,7 @@ runs:
       run: |
         python -m pip install --upgrade pip 
         ${{ inputs.use-dependencies }} && pip install -r requirements.txt
+        ${{ inputs.no-console }} && NO_CONSOLE=--noconsole
         pip install pyinstaller==${{ inputs.pyinstaller_version }}
-        pyinstaller --clean -y --dist ${{ inputs.dist }} --name ${{ inputs.artifact }} --onefile ${{ inputs.main }}.py
+        pyinstaller --clean -y --dist ${{ inputs.dist }} $NO_CONSOLE --name ${{ inputs.artifact }} --onefile ${{ inputs.main }}.py
         chown -R --reference=. ${{ inputs.dist }}
