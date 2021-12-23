@@ -6,6 +6,9 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
+- name: PyInstaller Build
+  uses: eric2788/pyinstaller-build@0.1.2
+
 name: Test Build Python Exe
 
 on:
