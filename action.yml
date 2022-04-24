@@ -33,6 +33,10 @@ inputs:
     description: 'whether to disppear console terminal'
     required: false
     default: false
+  icon:
+    description: 'add the icon mark into your executable, the file path of your ico'
+    required: false
+    default: 'NONE'
 
 runs:
   using: "composite"
@@ -47,6 +51,7 @@ runs:
         python -m pip install --upgrade pip 
         ${{ inputs.use-dependencies }} && pip install -r requirements.txt
         ${{ inputs.no-console }} && NO_CONSOLE=--noconsole
+        [ ${{ inputs.icon }} != "NONE" ] && ICON=--icon=${{ inputs.icon }}.ico
         pip install pyinstaller==${{ inputs.pyinstaller_version }}
-        pyinstaller --clean -y --dist ${{ inputs.dist }} $NO_CONSOLE --name ${{ inputs.artifact }} --onefile ${{ inputs.main }}.py
+        pyinstaller --clean -y --dist ${{ inputs.dist }} $NO_CONSOLE $ICON --name ${{ inputs.artifact }} --onefile ${{ inputs.main }}.py
         chown -R --reference=. ${{ inputs.dist }}
